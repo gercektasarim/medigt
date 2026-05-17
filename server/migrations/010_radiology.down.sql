@@ -1,0 +1,10 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_radorder_updated_at ON radiology_order;
+DROP TRIGGER IF EXISTS trg_radprocedure_updated_at ON radiology_procedure;
+DROP TABLE IF EXISTS radiology_order;
+DROP SEQUENCE IF EXISTS radiology_order_no_seq;
+DROP TABLE IF EXISTS radiology_procedure;
+DROP TYPE IF EXISTS radiology_order_priority;
+DROP TYPE IF EXISTS radiology_order_status;
+DROP TYPE IF EXISTS radiology_modality;
+COMMIT;

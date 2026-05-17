@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@source "../../core";
+@source "../../views";
+
+@import "./tokens.css";
+@import "./palettes.css";
+@import "./atoms.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    html {
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-feature-settings: "rlig" 1, "calt" 1;
+        /* Tema geçişleri ani değil pürüzsüz olsun (Caliptic pattern). */
+        transition: background-color 220ms ease, color 220ms ease;
+    }
+    /* Caliptic-tarz keyboard fokus: 2px ring + 2px boşluk + yumuşak köşe. */
+    :focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+        border-radius: 6px;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+        border-radius: 10px;
+        border: 2px solid var(--background);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover);
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+    }
+}

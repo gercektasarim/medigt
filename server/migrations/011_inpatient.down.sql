@@ -1,0 +1,16 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_admission_updated_at ON admission;
+DROP TRIGGER IF EXISTS trg_bed_updated_at ON bed;
+DROP TRIGGER IF EXISTS trg_ward_updated_at ON ward;
+DROP TABLE IF EXISTS bed_transfer;
+DROP TABLE IF EXISTS admission;
+DROP SEQUENCE IF EXISTS admission_no_seq;
+DROP TABLE IF EXISTS bed;
+DROP TABLE IF EXISTS ward;
+DROP TYPE IF EXISTS discharge_kind;
+DROP TYPE IF EXISTS admission_status;
+DROP TYPE IF EXISTS admission_kind;
+DROP TYPE IF EXISTS bed_status;
+DROP TYPE IF EXISTS bed_kind;
+DROP TYPE IF EXISTS ward_kind;
+COMMIT;

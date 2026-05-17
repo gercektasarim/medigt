@@ -1,0 +1,55 @@
+node_modules
+dist
+*.log
+.DS_Store
+.envrc
+
+# build outputs
+.turbo
+.next
+out
+build
+bin
+dist-electron
+*.tsbuildinfo
+!apps/desktop/build/
+!apps/desktop/build/**
+
+# env
+.env*
+!.env.example
+!apps/desktop/.env.production
+
+# test coverage
+coverage
+
+# Go
+server/bin/
+server/tmp/
+server/migrate
+server/medigt
+server/server
+server/*.exe
+
+# Test artifacts
+test-results/
+apps/web/test-results/
+
+# local settings
+.claude/
+.tool-versions
+
+# runtime
+*.pid
+data/
+# but DO commit shipped seed datasets used by `medigt seed-*` commands
+!server/data/
+!server/data/**
+
+# platform specific
+*.dmg
+*.app
+.idea
+.vscode/
+*.suo
+*.vssscc

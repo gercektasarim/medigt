@@ -1,0 +1,4 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_icd10_updated_at ON icd10_code;
+DROP TABLE IF EXISTS icd10_code;
+COMMIT;

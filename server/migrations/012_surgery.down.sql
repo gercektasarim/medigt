@@ -1,0 +1,10 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_surgery_updated_at ON surgery;
+DROP TRIGGER IF EXISTS trg_or_updated_at ON operating_room;
+DROP TABLE IF EXISTS surgery;
+DROP SEQUENCE IF EXISTS surgery_no_seq;
+DROP TABLE IF EXISTS operating_room;
+DROP TYPE IF EXISTS anesthesia_type;
+DROP TYPE IF EXISTS surgery_priority;
+DROP TYPE IF EXISTS surgery_status;
+COMMIT;

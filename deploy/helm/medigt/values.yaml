@@ -1,0 +1,235 @@
+# Default values for the MediGt HBYS chart. Override via -f values-X.yaml
+# in `helm install` or `helm upgrade`.
+
+nameOverride: ""
+fullnameOverride: ""
+
+# Tenant identification — the hospital group / chain installing this
+# release. Tagged on every resource so a multi-tenant cluster can
+# slice metrics + audit by tenant.
+tenant:
+  id: "default"
+  labels: {}
+
+images:
+  backend:
+    repository: ghcr.io/medigt-org/medigt-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  frontend:
+    repository: ghcr.io/medigt-org/medigt-web
+    tag: latest
+    pullPolicy: IfNotPresent
+  postgres:
+    # pgvector is overkill for V1 (no embeddings yet) but cheap to bake
+    # in so future ML features don't need a schema migration.
+    repository: pgvector/pgvector
+    tag: pg17
+    pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+service:
+  backend:
+    type: ClusterIP
+    port: 8088
+  frontend:
+    type: ClusterIP
+    port: 3008
+  postgres:
+    port: 5432
+
+# In-chart Postgres. Disable for production — use a managed Postgres
+# (RDS / Aiven / on-prem replica set) and set backend.databaseUrl.
+postgres:
+  enabled: true
+  auth:
+    database: medigt
+    username: medigt
+    password: medigt-change-me
+  persistence:
+    enabled: true
+    storageClassName: ""
+    size: 50Gi   # bigger than Caliptic; HBYS attaches large PACS docs
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 4
+      memory: 8Gi
+
+backend:
+  replicaCount: 2
+  appEnv: production
+  frontendOrigin: "http://localhost:3008"
+  corsAllowedOrigins: ""
+  # SGK + e-Nabız + TURKKEP credentials — empty = mock client.
+  # Real cert + base URL goes here once Sprint-1 başvurusu sonuçlanır.
+  medula:
+    baseUrl: ""
+    facilityCode: ""
+    username: ""
+    password: ""
+  enabiz:
+    baseUrl: ""
+    clientId: ""
+    clientSecret: ""
+  turkkep:
+    baseUrl: ""
+    apiKey: ""
+  erecete:
+    baseUrl: ""
+    clientId: ""
+    clientSecret: ""
+  its:
+    baseUrl: ""
+    clientId: ""
+    clientSecret: ""
+  # HL7 ADT outbound peer — empty = mock dispatcher (in-process AA ack).
+  # Set to "host:port" for the real PACS / LIS / HIE MLLP endpoint.
+  hl7Adt:
+    peerAddress: ""
+    timeout: "15s"
+  mernis:
+    baseUrl: ""
+    serviceUserCode: ""
+    servicePassword: ""
+  resend:
+    apiKey: ""
+    fromEmail: "noreply@medigt.com"
+  google:
+    clientId: ""
+    clientSecret: ""
+    redirectUri: "http://localhost:3008/auth/callback"
+  storage:
+    s3Bucket: ""
+    s3Region: "eu-central-1"     # KVKK: sağlık verisi yurt dışına çıkamaz
+    cloudfrontDomain: ""
+    cloudfrontKeyPairId: ""
+    cloudfrontPrivateKey: ""
+    # Local fallback (used when s3Bucket is empty). LOCAL_UPLOAD_BASE_URL
+    # MUST be the public backend URL so file links resolve from a browser.
+    localUploadDir: "/app/data/uploads"
+    localUploadBaseUrl: ""
+  cookieDomain: ""
+  appUrl: "http://localhost:3008"
+  databaseUrl: ""
+  jwtSecret: "change-me-in-production"
+  # Per-org field encryption key — TC, password, TOTP secret encrypted at rest.
+  fieldEncryptionKey: "change-me-in-production-32-bytes-min"
+  # KVKK: tıbbi kayıtlar 10 yıl, sair audit_log 10 yıl tutulur.
+  auditRetentionDays: 3650
+  extraEnv: []
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 2
+      memory: 2Gi
+  # PVC for uploads when S3 isn't wired. PACS DICOM kayıtları büyür hızlı.
+  uploads:
+    enabled: true
+    storageClassName: ""
+    size: 100Gi
+  livenessProbe:
+    path: /api/health
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    path: /api/health
+    initialDelaySeconds: 15
+    periodSeconds: 10
+
+frontend:
+  replicaCount: 2
+  apiUrl: ""
+  wsUrl: ""
+  resources:
+    requests:
+      cpu: 150m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+  livenessProbe:
+    path: /
+    initialDelaySeconds: 30
+    periodSeconds: 10
+  readinessProbe:
+    path: /
+    initialDelaySeconds: 15
+    periodSeconds: 10
+
+# Vanilla k8s ingress — public-facing /api, /ws, and /.
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  host: medigt.local
+  tls:
+    enabled: false
+    secretName: ""
+
+# OpenShift Route — alternative to Ingress on OCP clusters. Edge-TLS by
+# default; switch to reencrypt for end-to-end TLS to the pod.
+route:
+  enabled: false
+  host: ""
+  backendHost: ""
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+networkPolicy:
+  enabled: true
+  allowNamespaceSelector: {}
+
+# Multi-tenant cluster quotas — disabled by default; enable per namespace.
+tenantIsolation:
+  resourceQuota:
+    enabled: false
+    pods: "60"
+    requestsCpu: "20"
+    requestsMemory: "40Gi"
+    limitsCpu: "40"
+    limitsMemory: "80Gi"
+  limitRange:
+    enabled: false
+    defaultCpu: "1"
+    defaultMemory: "1Gi"
+    defaultRequestCpu: "200m"
+    defaultRequestMemory: "256Mi"
+
+pdb:
+  backend:
+    enabled: true
+    minAvailable: 1
+  frontend:
+    enabled: true
+    minAvailable: 1
+
+hpa:
+  backend:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCpuUtilizationPercentage: 70
+  frontend:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCpuUtilizationPercentage: 70
+
+# Prometheus operator integration. Disabled until ops chooses to install
+# the operator into the namespace.
+monitoring:
+  serviceMonitor:
+    enabled: false
+    interval: 30s
+    scrapeTimeout: 10s
+    labels: {}

@@ -1,0 +1,181 @@
+MediGt Attribution License (MAL) v1.0
+=====================================
+
+Telif Hakkı (c) 2026 Türker Aktaş — MediGt
+turker.aktas81@gmail.com  ·  +90 530 288 98 60
+https://github.com/gercektasarim/medigt
+
+
+TÜRKÇE METİN
+============
+
+Bu yazılımın bir kopyasını edinen herkese ("Lisans Sahibi"), aşağıdaki
+koşullara uymak şartıyla, yazılımı sınırlama olmaksızın kullanma,
+kopyalama, değiştirme, birleştirme, yayınlama, dağıtma, alt-lisanslama
+ve/veya satma hakkı, ücretsiz olarak verilir.
+
+Bu hak, yazılım üzerinden hizmet sunmayı (SaaS, white-label, hastane
+operasyonu, danışmanlık, satış) ve yazılımı bir başka ürünün parçası
+olarak entegre etmeyi kapsar.
+
+
+1. ATIF ZORUNLULUĞU
+-------------------
+
+Aşağıdaki maddelere uymak şarttır:
+
+  (a) Yazılımın orijinal telif hakkı bildirimi ve bu lisans metni,
+      yazılımın TÜM kaynak kod kopyalarına ve önemli parçalarına
+      değiştirilmeden dahil edilmelidir.
+
+  (b) Yazılım son kullanıcıya sunulduğunda (web arayüzü, masaüstü
+      uygulaması, mobil uygulama veya basılı dokümantasyon dahil olmak
+      üzere), aşağıdaki bilgi son kullanıcı tarafından kolayca
+      görülebilir bir yerde yer almalıdır:
+
+        "MediGt teknolojisini temel alır.
+         © Türker Aktaş — github.com/gercektasarim/medigt"
+
+      Bu bilgi şu noktalardan EN AZ BİRİNDE açıkça görünmelidir:
+
+        - Uygulamanın "Hakkında" / "About" ekranı
+        - Web sayfasının altbilgisi (footer)
+        - Ürün tanıtım web sitesi
+        - Satış sözleşmesi / Hizmet Sözleşmesi
+        - Kurulum dokümantasyonu
+
+      White-label kullanım da dahil olmak üzere — yazılımın markası
+      değiştirilse, görsel kimliği özelleştirilse veya farklı bir
+      isimle pazarlansa bile, atıf yükümlülüğü sürer.
+
+  (c) Yazılımı doğrudan veya türevini dağıtan veya sunan tarafın
+      ticari kimliği son kullanıcıya açıkça belirtilmelidir. Yani
+      "yazılımı kimden aldıkları" net olmalıdır; gizli white-label
+      veya kaynağı belirsiz dağıtım kabul edilmez.
+
+
+2. SINIRLAR
+-----------
+
+  (a) Bu lisans, MediGt adı, logosu veya ticari kimliği üzerinde size
+      herhangi bir mülkiyet hakkı vermez. MediGt'ye atıf yapma
+      yükümlülüğü dışında, MediGt markasını sahiplenmek veya kendi
+      ürününüzmüş gibi pazarlamak yasaktır.
+
+  (b) Atıf bilgisini gizleyen, silen veya yanıltıcı şekilde gösteren
+      her türev kullanım, bu lisansı ihlal eder ve lisans kullanım
+      hakkı otomatik olarak sona erer.
+
+  (c) Yazılım veya bir parçası, üçüncü taraflara satıldığında veya
+      lisanslandığında, bu lisansın koşullarının aynısı veya daha
+      koruyucu bir lisans, üçüncü tarafa devredilmek zorundadır.
+
+
+3. GARANTİ REDDİ
+----------------
+
+YAZILIM "OLDUĞU GİBİ" SUNULUR; AÇIK VEYA ZIMNİ HİÇBİR GARANTİ
+VERİLMEMEKTEDİR. SATILABİLİRLİK, BELİRLİ BİR AMACA UYGUNLUK VE FİKRİ
+MÜLKİYET HAKLARININ İHLAL EDİLMEMESİ DAHİL ANCAK BUNLARLA SINIRLI
+OLMAMAK ÜZERE, HİÇBİR DURUMDA YAZARLAR VEYA TELİF HAKKI SAHİPLERİ,
+SÖZLEŞMEDEN, HAKSIZ FİİLDEN VEYA BAŞKA BİR YOLDAN DOĞAN HERHANGİ BİR
+TALEPDEN, ZARARDAN VEYA SORUMLULUKTAN SORUMLU TUTULAMAZ.
+
+Hastane bilgi yönetim sistemleri hayati öneme sahiptir. Bu yazılımı
+kullanan tarafların — kendi denetim, validasyon, KVKK uyumluluk ve
+hastane operasyon süreçlerini bağımsız olarak yürütmek — tam
+sorumluluğu bulunmaktadır.
+
+
+==========================================================================
+
+
+ENGLISH TEXT
+============
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software (the "Licensee") to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell the Software without
+limitation, subject to the conditions below.
+
+This permission covers offering services on top of the Software (SaaS,
+white-label, hospital operations, consulting, resale) and integrating
+the Software as a component of another product.
+
+
+1. ATTRIBUTION REQUIREMENT
+--------------------------
+
+The following are mandatory:
+
+  (a) The original copyright notice and this license text MUST be
+      included unmodified in all source code copies and substantial
+      portions of the Software.
+
+  (b) When the Software is delivered to end users (including web UIs,
+      desktop apps, mobile apps, and printed documentation), the
+      following notice MUST appear in a location easily visible to the
+      end user:
+
+        "Based on MediGt technology.
+         © Türker Aktaş — github.com/gercektasarim/medigt"
+
+      This notice MUST appear in AT LEAST ONE of:
+
+        - The application's "About" screen
+        - The footer of the product website
+        - The product's marketing site
+        - The end-user / service agreement
+        - The installation documentation
+
+      The requirement applies even for white-label use — re-branded,
+      re-styled, or re-named distributions still carry the attribution
+      obligation.
+
+  (c) The commercial identity of the party distributing or operating
+      the Software (or any derivative) MUST be clearly disclosed to
+      end users. That is, "who they obtained the Software from" must
+      be transparent; concealed white-label or opaque-source
+      distribution is not permitted.
+
+
+2. LIMITATIONS
+--------------
+
+  (a) This license grants no rights in the MediGt name, logo, or
+      commercial identity. Except for the attribution obligation,
+      claiming or marketing the MediGt brand as your own is
+      prohibited.
+
+  (b) Any derivative use that hides, removes, or misleadingly presents
+      the attribution notice violates this license, and the right to
+      use the Software terminates automatically.
+
+  (c) When the Software, or any part thereof, is sold or relicensed to
+      third parties, the same conditions of this license, or a more
+      protective license, MUST be passed on to the third party.
+
+
+3. DISCLAIMER OF WARRANTY
+-------------------------
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Hospital information management systems are life-critical. Parties
+using this Software bear full responsibility for conducting their own
+auditing, validation, KVKK / GDPR compliance, and hospital operations
+processes independently.
+
+
+==========================================================================
+
+For attribution questions or commercial inquiries:
+  Türker Aktaş
+  turker.aktas81@gmail.com
+  +90 530 288 98 60

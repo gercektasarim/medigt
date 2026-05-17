@@ -1,0 +1,11 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_nurse_updated_at ON nurse;
+DROP TRIGGER IF EXISTS trg_doctor_updated_at ON doctor;
+DROP TRIGGER IF EXISTS trg_staff_member_updated_at ON staff_member;
+DROP TRIGGER IF EXISTS trg_specialization_updated_at ON specialization;
+DROP TABLE IF EXISTS nurse;
+DROP TABLE IF EXISTS doctor_specialization;
+DROP TABLE IF EXISTS doctor;
+DROP TABLE IF EXISTS staff_member;
+DROP TABLE IF EXISTS specialization;
+COMMIT;

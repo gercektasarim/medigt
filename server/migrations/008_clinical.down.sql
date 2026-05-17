@@ -1,0 +1,14 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_prescription_updated_at ON prescription;
+DROP TRIGGER IF EXISTS trg_visit_updated_at ON visit;
+DROP TABLE IF EXISTS vital_signs;
+DROP TABLE IF EXISTS prescription_item;
+DROP TABLE IF EXISTS prescription;
+DROP SEQUENCE IF EXISTS prescription_no_seq;
+DROP TABLE IF EXISTS diagnosis;
+DROP TABLE IF EXISTS visit;
+DROP TYPE IF EXISTS prescription_status;
+DROP TYPE IF EXISTS diagnosis_kind;
+DROP TYPE IF EXISTS encounter_type;
+DROP TYPE IF EXISTS visit_status;
+COMMIT;

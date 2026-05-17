@@ -1,0 +1,22 @@
+MediGt HBYS '{{ .Release.Name }}' kuruldu (tenant: {{ .Values.tenant.id }}).
+
+API:        {{ if .Values.ingress.enabled }}https://{{ .Values.ingress.host }}/api{{ else if .Values.route.enabled }}https://{{ default .Values.route.host .Values.route.backendHost }}/api{{ else }}port-forward:  kubectl port-forward svc/{{ include "medigt.fullname" . }}-backend {{ .Values.service.backend.port }}:{{ .Values.service.backend.port }}{{ end }}
+
+Web:        {{ if .Values.ingress.enabled }}https://{{ .Values.ingress.host }}/{{ else if .Values.route.enabled }}https://{{ .Values.route.host }}/{{ else }}port-forward:  kubectl port-forward svc/{{ include "medigt.fullname" . }}-frontend {{ .Values.service.frontend.port }}:{{ .Values.service.frontend.port }}{{ end }}
+
+WebSocket:  /ws (heartbeat 30s; client lastMessageTime timeout 60s)
+
+İlk login:
+  1. /login → e-posta gir → konsoldan kodu kopyala (APP_ENV=dev için 888888)
+  2. /hastaneler/yeni → organization + initial branch oluştur
+  3. /h/<org_slug>/<branch_slug>/baslangic → onboarding checklist
+
+Pre-cert kontrol listesi (Sprint 1):
+  - SGK Medula sertifikası başvuruldu mu? (3-6 ay)
+  - e-Nabız Client ID/Secret alındı mı?
+  - TURKKEP / TÜRKTRUST e-imza kontratı var mı?
+  - PACS vendor seçildi mi? (Orthanc onerilen mock alternatif)
+  - KVKK danışmanı seçildi mi?
+
+Audit log retention: {{ .Values.backend.auditRetentionDays }} gün
+Storage: {{ if .Values.backend.storage.s3Bucket }}S3 ({{ .Values.backend.storage.s3Bucket }} / {{ .Values.backend.storage.s3Region }}){{ else }}Local PVC ({{ .Values.backend.storage.localUploadDir }}, {{ .Values.backend.uploads.size }}){{ end }}

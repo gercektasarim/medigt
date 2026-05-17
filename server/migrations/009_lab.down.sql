@@ -1,0 +1,13 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_lab_order_item_updated_at ON lab_order_item;
+DROP TRIGGER IF EXISTS trg_lab_order_updated_at ON lab_order;
+DROP TRIGGER IF EXISTS trg_lab_test_catalog_updated_at ON lab_test_catalog;
+DROP TABLE IF EXISTS lab_order_item;
+DROP TABLE IF EXISTS lab_order;
+DROP SEQUENCE IF EXISTS lab_order_no_seq;
+DROP TABLE IF EXISTS lab_test_catalog;
+DROP TYPE IF EXISTS lab_sample_type;
+DROP TYPE IF EXISTS lab_result_flag;
+DROP TYPE IF EXISTS lab_order_priority;
+DROP TYPE IF EXISTS lab_order_status;
+COMMIT;

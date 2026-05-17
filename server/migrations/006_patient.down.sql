@@ -1,0 +1,14 @@
+BEGIN;
+DROP TRIGGER IF EXISTS trg_patient_allergy_updated_at ON patient_allergy;
+DROP TRIGGER IF EXISTS trg_patient_insurance_updated_at ON patient_insurance;
+DROP TRIGGER IF EXISTS trg_patient_updated_at ON patient;
+DROP TABLE IF EXISTS patient_allergy;
+DROP TABLE IF EXISTS patient_insurance;
+DROP TABLE IF EXISTS patient;
+DROP SEQUENCE IF EXISTS patient_mrn_seq;
+DROP TYPE IF EXISTS allergy_severity;
+DROP TYPE IF EXISTS insurance_status;
+DROP TYPE IF EXISTS blood_type;
+DROP TYPE IF EXISTS patient_identifier_kind;
+DROP TYPE IF EXISTS patient_gender;
+COMMIT;

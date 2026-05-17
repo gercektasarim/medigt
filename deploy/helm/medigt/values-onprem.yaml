@@ -1,0 +1,48 @@
+# On-prem hospital cluster — Postgres in-chart, local PVC uploads,
+# k8s Ingress, single-node tolerant. Use when there's no managed DB.
+#
+# KVKK note: tıbbi veri yurt dışına çıkamaz. localUploadDir + PVC
+# kombinasyonu uygundur, lakin yedekleme planı ayrı kurulmalı
+# (pg_dump → samba / NAS / hot-replica).
+
+postgres:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 200Gi
+  resources:
+    requests:
+      cpu: 1
+      memory: 2Gi
+    limits:
+      cpu: 8
+      memory: 16Gi
+
+backend:
+  replicaCount: 2
+  appUrl: "http://medigt.hastane.local"
+  appEnv: production
+  frontendOrigin: "http://medigt.hastane.local"
+  storage:
+    s3Bucket: ""   # local fallback
+    localUploadBaseUrl: "http://medigt.hastane.local/api"
+  uploads:
+    enabled: true
+    size: 500Gi
+
+frontend:
+  replicaCount: 2
+
+ingress:
+  enabled: true
+  className: nginx
+  host: medigt.hastane.local
+  tls:
+    enabled: false   # internal LAN; enable when reverse proxy fronts the cluster
+
+route:
+  enabled: false
+
+monitoring:
+  serviceMonitor:
+    enabled: false   # Prometheus operator çoğunlukla on-prem cluster'da yok

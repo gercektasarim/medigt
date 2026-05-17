@@ -1,0 +1,3 @@
+BEGIN;
+DROP TABLE IF EXISTS image_reference;
+COMMIT;

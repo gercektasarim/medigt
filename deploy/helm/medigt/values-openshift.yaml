@@ -1,0 +1,52 @@
+# OpenShift-tuned overrides. Apply with:
+#   helm install medigt deploy/helm/medigt -f values-openshift.yaml
+#
+# What's different from the default values:
+#   - Routes instead of Ingress (OCP-native).
+#   - Edge TLS terminates at the OCP router; pod traffic is HTTP.
+#   - postgres.enabled=false — assume external managed DB. KVKK için
+#     hastane onpremise Postgres replicasını tercih ediyor.
+#   - No in-cluster Postgres means resources are leaner.
+
+route:
+  enabled: true
+  host: medigt.apps.example.com
+  # If you split the FE + API onto separate hostnames, set backendHost too.
+  backendHost: ""
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+ingress:
+  enabled: false
+
+postgres:
+  enabled: false
+
+backend:
+  # Externally managed Postgres. Point at the secret-injected URL.
+  databaseUrl: "postgres://medigt:CHANGE-ME@pg.example.com:5432/medigt?sslmode=require"
+  replicaCount: 3
+  appUrl: "https://medigt.apps.example.com"
+  appEnv: production
+  frontendOrigin: "https://medigt.apps.example.com"
+  corsAllowedOrigins: "https://medigt.apps.example.com"
+
+frontend:
+  replicaCount: 3
+  apiUrl: "https://medigt.apps.example.com/api"
+  wsUrl: "wss://medigt.apps.example.com/ws"
+
+hpa:
+  backend:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 12
+  frontend:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 8
+
+monitoring:
+  serviceMonitor:
+    enabled: true

@@ -1,0 +1,594 @@
+{{- if .Values.serviceAccount.create }}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "medigt.serviceAccountName" . }}
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+  {{- with .Values.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+---
+{{- end }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend-secret
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+type: Opaque
+stringData:
+  DATABASE_URL: {{ include "medigt.backendDatabaseUrl" . | quote }}
+  JWT_SECRET: {{ .Values.backend.jwtSecret | quote }}
+  FIELD_ENCRYPTION_KEY: {{ .Values.backend.fieldEncryptionKey | quote }}
+  RESEND_API_KEY: {{ .Values.backend.resend.apiKey | quote }}
+  GOOGLE_CLIENT_ID: {{ .Values.backend.google.clientId | quote }}
+  GOOGLE_CLIENT_SECRET: {{ .Values.backend.google.clientSecret | quote }}
+  CLOUDFRONT_PRIVATE_KEY: {{ .Values.backend.storage.cloudfrontPrivateKey | quote }}
+  # Integration cred bundle — populated by ops when Sprint-1 başvurular
+  # tamamlanır. Empty = mock client.
+  MEDULA_USERNAME: {{ .Values.backend.medula.username | quote }}
+  MEDULA_PASSWORD: {{ .Values.backend.medula.password | quote }}
+  MEDULA_FACILITY_CODE: {{ .Values.backend.medula.facilityCode | quote }}
+  ENABIZ_CLIENT_ID: {{ .Values.backend.enabiz.clientId | quote }}
+  ENABIZ_CLIENT_SECRET: {{ .Values.backend.enabiz.clientSecret | quote }}
+  TURKKEP_API_KEY: {{ .Values.backend.turkkep.apiKey | quote }}
+  ERECETE_CLIENT_ID: {{ .Values.backend.erecete.clientId | quote }}
+  ERECETE_CLIENT_SECRET: {{ .Values.backend.erecete.clientSecret | quote }}
+  ITS_CLIENT_ID: {{ .Values.backend.its.clientId | quote }}
+  ITS_CLIENT_SECRET: {{ .Values.backend.its.clientSecret | quote }}
+  MERNIS_SERVICE_USER_CODE: {{ .Values.backend.mernis.serviceUserCode | quote }}
+  MERNIS_SERVICE_PASSWORD: {{ .Values.backend.mernis.servicePassword | quote }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend-config
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+data:
+  PORT: "8088"
+  FRONTEND_ORIGIN: {{ .Values.backend.frontendOrigin | quote }}
+  CORS_ALLOWED_ORIGINS: {{ .Values.backend.corsAllowedOrigins | quote }}
+  RESEND_FROM_EMAIL: {{ .Values.backend.resend.fromEmail | quote }}
+  GOOGLE_REDIRECT_URI: {{ .Values.backend.google.redirectUri | quote }}
+  S3_BUCKET: {{ .Values.backend.storage.s3Bucket | quote }}
+  S3_REGION: {{ .Values.backend.storage.s3Region | quote }}
+  CLOUDFRONT_DOMAIN: {{ .Values.backend.storage.cloudfrontDomain | quote }}
+  CLOUDFRONT_KEY_PAIR_ID: {{ .Values.backend.storage.cloudfrontKeyPairId | quote }}
+  LOCAL_UPLOAD_DIR: {{ .Values.backend.storage.localUploadDir | default "/app/data/uploads" | quote }}
+  LOCAL_UPLOAD_BASE_URL: {{ .Values.backend.storage.localUploadBaseUrl | quote }}
+  COOKIE_DOMAIN: {{ .Values.backend.cookieDomain | quote }}
+  APP_ENV: {{ .Values.backend.appEnv | quote }}
+  MEDIGT_APP_URL: {{ .Values.backend.appUrl | quote }}
+  AUDIT_RETENTION_DAYS: {{ .Values.backend.auditRetentionDays | quote }}
+  # Integration base URLs — keep public so a quick `kubectl get cm` shows
+  # which endpoint a release is pointed at.
+  MEDULA_BASE_URL: {{ .Values.backend.medula.baseUrl | quote }}
+  ENABIZ_BASE_URL: {{ .Values.backend.enabiz.baseUrl | quote }}
+  TURKKEP_BASE_URL: {{ .Values.backend.turkkep.baseUrl | quote }}
+  ERECETE_BASE_URL: {{ .Values.backend.erecete.baseUrl | quote }}
+  ITS_BASE_URL: {{ .Values.backend.its.baseUrl | quote }}
+  MERNIS_BASE_URL: {{ .Values.backend.mernis.baseUrl | quote }}
+  HL7_ADT_PEER_ADDRESS: {{ .Values.backend.hl7Adt.peerAddress | quote }}
+  HL7_ADT_PEER_TIMEOUT: {{ .Values.backend.hl7Adt.timeout | quote }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        {{- include "medigt.labels" . | nindent 8 }}
+        app.kubernetes.io/component: backend
+    spec:
+      serviceAccountName: {{ include "medigt.serviceAccountName" . }}
+      containers:
+        - name: backend
+          image: "{{ .Values.images.backend.repository }}:{{ .Values.images.backend.tag }}"
+          imagePullPolicy: {{ .Values.images.backend.pullPolicy }}
+          ports:
+            - containerPort: 8088
+              name: http
+          envFrom:
+            - secretRef:
+                name: {{ include "medigt.fullname" . }}-backend-secret
+            - configMapRef:
+                name: {{ include "medigt.fullname" . }}-backend-config
+          {{- if .Values.backend.extraEnv }}
+          env:
+            {{- toYaml .Values.backend.extraEnv | nindent 12 }}
+          {{- end }}
+          {{- if .Values.backend.uploads.enabled }}
+          volumeMounts:
+            - name: uploads
+              mountPath: /app/data/uploads
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.backend.livenessProbe.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.backend.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.backend.livenessProbe.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.backend.readinessProbe.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.backend.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.backend.readinessProbe.periodSeconds }}
+          resources:
+            {{- toYaml .Values.backend.resources | nindent 12 }}
+      {{- if .Values.backend.uploads.enabled }}
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: {{ include "medigt.fullname" . }}-backend-uploads
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.backend.type }}
+  selector:
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - name: http
+      port: {{ .Values.service.backend.port }}
+      targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "medigt.fullname" . }}-frontend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.frontend.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: frontend
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        {{- include "medigt.labels" . | nindent 8 }}
+        app.kubernetes.io/component: frontend
+    spec:
+      serviceAccountName: {{ include "medigt.serviceAccountName" . }}
+      containers:
+        - name: frontend
+          image: "{{ .Values.images.frontend.repository }}:{{ .Values.images.frontend.tag }}"
+          imagePullPolicy: {{ .Values.images.frontend.pullPolicy }}
+          ports:
+            - containerPort: 3008
+              name: http
+          env:
+            - name: HOSTNAME
+              value: "0.0.0.0"
+            # REMOTE_API_URL is read by Next.js server components (force-dynamic
+            # pages) — points at the cluster-internal backend Service.
+            - name: REMOTE_API_URL
+              value: "http://{{ include "medigt.fullname" . }}-backend:{{ .Values.service.backend.port }}"
+            {{- if .Values.frontend.apiUrl }}
+            - name: NEXT_PUBLIC_API_URL
+              value: {{ .Values.frontend.apiUrl | quote }}
+            {{- end }}
+            {{- if .Values.frontend.wsUrl }}
+            - name: NEXT_PUBLIC_WS_URL
+              value: {{ .Values.frontend.wsUrl | quote }}
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.frontend.livenessProbe.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.frontend.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.frontend.livenessProbe.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.frontend.readinessProbe.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.frontend.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.frontend.readinessProbe.periodSeconds }}
+          resources:
+            {{- toYaml .Values.frontend.resources | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "medigt.fullname" . }}-frontend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.frontend.type }}
+  selector:
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  ports:
+    - name: http
+      port: {{ .Values.service.frontend.port }}
+      targetPort: http
+{{- if .Values.backend.uploads.enabled }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend-uploads
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  {{- if .Values.backend.uploads.storageClassName }}
+  storageClassName: {{ .Values.backend.uploads.storageClassName | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.backend.uploads.size }}
+{{- end }}
+{{- if .Values.postgres.enabled }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "medigt.fullname" . }}-postgres-auth
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+type: Opaque
+stringData:
+  POSTGRES_DB: {{ .Values.postgres.auth.database | quote }}
+  POSTGRES_USER: {{ .Values.postgres.auth.username | quote }}
+  POSTGRES_PASSWORD: {{ .Values.postgres.auth.password | quote }}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "medigt.fullname" . }}-postgres
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "medigt.fullname" . }}-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: postgres
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        {{- include "medigt.labels" . | nindent 8 }}
+        app.kubernetes.io/component: postgres
+    spec:
+      serviceAccountName: {{ include "medigt.serviceAccountName" . }}
+      containers:
+        - name: postgres
+          image: "{{ .Values.images.postgres.repository }}:{{ .Values.images.postgres.tag }}"
+          imagePullPolicy: {{ .Values.images.postgres.pullPolicy }}
+          ports:
+            - containerPort: 5432
+              name: postgres
+          envFrom:
+            - secretRef:
+                name: {{ include "medigt.fullname" . }}-postgres-auth
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.postgres.resources | nindent 12 }}
+      {{- if not .Values.postgres.persistence.enabled }}
+      volumes:
+        - name: data
+          emptyDir: {}
+      {{- end }}
+  {{- if .Values.postgres.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          {{- include "medigt.labels" . | nindent 10 }}
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        {{- if .Values.postgres.persistence.storageClassName }}
+        storageClassName: {{ .Values.postgres.persistence.storageClassName | quote }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.postgres.persistence.size }}
+  {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "medigt.fullname" . }}-postgres
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  ports:
+    - port: {{ .Values.service.postgres.port }}
+      targetPort: postgres
+      name: postgres
+  selector:
+    app.kubernetes.io/component: postgres
+    app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+{{- if .Values.ingress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "medigt.fullname" . }}
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "medigt.fullname" . }}-backend
+                port:
+                  number: {{ .Values.service.backend.port }}
+          - path: /ws
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "medigt.fullname" . }}-backend
+                port:
+                  number: {{ .Values.service.backend.port }}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "medigt.fullname" . }}-frontend
+                port:
+                  number: {{ .Values.service.frontend.port }}
+  {{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+      secretName: {{ .Values.ingress.tls.secretName | quote }}
+  {{- end }}
+{{- end }}
+{{- if .Values.route.enabled }}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "medigt.fullname" . }}-frontend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  {{- if .Values.route.host }}
+  host: {{ .Values.route.host | quote }}
+  {{- end }}
+  to:
+    kind: Service
+    name: {{ include "medigt.fullname" . }}-frontend
+    weight: 100
+  path: /
+  tls:
+    termination: {{ .Values.route.tls.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.tls.insecureEdgeTerminationPolicy }}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend-api
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  host: {{ default .Values.route.host .Values.route.backendHost | quote }}
+  to:
+    kind: Service
+    name: {{ include "medigt.fullname" . }}-backend
+    weight: 100
+  path: /api
+  tls:
+    termination: {{ .Values.route.tls.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.tls.insecureEdgeTerminationPolicy }}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend-ws
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  host: {{ default .Values.route.host .Values.route.backendHost | quote }}
+  to:
+    kind: Service
+    name: {{ include "medigt.fullname" . }}-backend
+    weight: 100
+  path: /ws
+  tls:
+    termination: {{ .Values.route.tls.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.tls.insecureEdgeTerminationPolicy }}
+{{- end }}
+{{- if .Values.networkPolicy.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "medigt.fullname" . }}-default
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            {{- if .Values.networkPolicy.allowNamespaceSelector }}
+            {{- toYaml .Values.networkPolicy.allowNamespaceSelector | nindent 12 }}
+            {{- else }}
+            matchLabels: {}
+            {{- end }}
+  egress:
+    - {}
+{{- end }}
+{{- if .Values.tenantIsolation.resourceQuota.enabled }}
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: {{ include "medigt.fullname" . }}-tenant-quota
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  hard:
+    pods: {{ .Values.tenantIsolation.resourceQuota.pods | quote }}
+    requests.cpu: {{ .Values.tenantIsolation.resourceQuota.requestsCpu | quote }}
+    requests.memory: {{ .Values.tenantIsolation.resourceQuota.requestsMemory | quote }}
+    limits.cpu: {{ .Values.tenantIsolation.resourceQuota.limitsCpu | quote }}
+    limits.memory: {{ .Values.tenantIsolation.resourceQuota.limitsMemory | quote }}
+{{- end }}
+{{- if .Values.tenantIsolation.limitRange.enabled }}
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: {{ include "medigt.fullname" . }}-tenant-limits
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  limits:
+    - type: Container
+      default:
+        cpu: {{ .Values.tenantIsolation.limitRange.defaultCpu | quote }}
+        memory: {{ .Values.tenantIsolation.limitRange.defaultMemory | quote }}
+      defaultRequest:
+        cpu: {{ .Values.tenantIsolation.limitRange.defaultRequestCpu | quote }}
+        memory: {{ .Values.tenantIsolation.limitRange.defaultRequestMemory | quote }}
+{{- end }}
+{{- if .Values.pdb.backend.enabled }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend-pdb
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ .Values.pdb.backend.minAvailable }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+{{- if .Values.pdb.frontend.enabled }}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "medigt.fullname" . }}-frontend-pdb
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ .Values.pdb.frontend.minAvailable }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: frontend
+      app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+{{- if .Values.hpa.backend.enabled }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "medigt.fullname" . }}-backend
+  minReplicas: {{ .Values.hpa.backend.minReplicas }}
+  maxReplicas: {{ .Values.hpa.backend.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.hpa.backend.targetCpuUtilizationPercentage }}
+{{- end }}
+{{- if .Values.hpa.frontend.enabled }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "medigt.fullname" . }}-frontend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "medigt.fullname" . }}-frontend
+  minReplicas: {{ .Values.hpa.frontend.minReplicas }}
+  maxReplicas: {{ .Values.hpa.frontend.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.hpa.frontend.targetCpuUtilizationPercentage }}
+{{- end }}
+{{- if .Values.monitoring.serviceMonitor.enabled }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "medigt.fullname" . }}-backend
+  labels:
+    {{- include "medigt.labels" . | nindent 4 }}
+    {{- with .Values.monitoring.serviceMonitor.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: backend
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  endpoints:
+    - port: http
+      path: /api/health
+      interval: {{ .Values.monitoring.serviceMonitor.interval }}
+      scrapeTimeout: {{ .Values.monitoring.serviceMonitor.scrapeTimeout }}
+{{- end }}

@@ -1,0 +1,363 @@
+code	title_tr	chapter
+A00	Kolera	I. Enfeksiyon Hastalıkları
+A01	Tifoid ve paratifoid	I. Enfeksiyon Hastalıkları
+A02	Diğer salmonella enfeksiyonları	I. Enfeksiyon Hastalıkları
+A03	Şigelloz	I. Enfeksiyon Hastalıkları
+A04	Diğer bakteriyel bağırsak enfeksiyonları	I. Enfeksiyon Hastalıkları
+A05	Diğer bakteriyel gıda zehirlenmeleri	I. Enfeksiyon Hastalıkları
+A06	Amibiyaz	I. Enfeksiyon Hastalıkları
+A08	Viral ve diğer enfeksiyöz bağırsak enfeksiyonları	I. Enfeksiyon Hastalıkları
+A09	Enfeksiyöz olduğu varsayılan diyare ve gastroenterit	I. Enfeksiyon Hastalıkları
+A15	Solunum sistemi tüberkülozu, bakteriyolojik / histolojik doğrulanmış	I. Enfeksiyon Hastalıkları
+A16	Solunum sistemi tüberkülozu, bakteriyolojik / histolojik doğrulanmamış	I. Enfeksiyon Hastalıkları
+A37	Boğmaca	I. Enfeksiyon Hastalıkları
+A40	Streptokokkal sepsis	I. Enfeksiyon Hastalıkları
+A41	Diğer sepsis	I. Enfeksiyon Hastalıkları
+A41.9	Sepsis, tanımlanmamış	I. Enfeksiyon Hastalıkları
+A46	Eritrosipelo	I. Enfeksiyon Hastalıkları
+A49	Bakteriyel enfeksiyon, tanımlanmamış lokalizasyon	I. Enfeksiyon Hastalıkları
+A54	Gonokokkal enfeksiyon	I. Enfeksiyon Hastalıkları
+A60	Anogenital herpes	I. Enfeksiyon Hastalıkları
+A63	Diğer cinsel temas yolu ile bulaşan hastalıklar	I. Enfeksiyon Hastalıkları
+A77	Riketsiyoz	I. Enfeksiyon Hastalıkları
+A80	Akut poliomyelit	I. Enfeksiyon Hastalıkları
+A87	Viral menenjit	I. Enfeksiyon Hastalıkları
+A88	Diğer viral merkezi sinir sistemi enfeksiyonları	I. Enfeksiyon Hastalıkları
+A90	Dang ateşi	I. Enfeksiyon Hastalıkları
+B00	Herpesvirüs enfeksiyonları	I. Enfeksiyon Hastalıkları
+B01	Suçiçeği [varicella]	I. Enfeksiyon Hastalıkları
+B02	Zona [herpes zoster]	I. Enfeksiyon Hastalıkları
+B05	Kızamık	I. Enfeksiyon Hastalıkları
+B06	Kızamıkçık	I. Enfeksiyon Hastalıkları
+B15	Akut hepatit A	I. Enfeksiyon Hastalıkları
+B16	Akut hepatit B	I. Enfeksiyon Hastalıkları
+B17	Diğer akut viral hepatitler	I. Enfeksiyon Hastalıkları
+B18	Kronik viral hepatit	I. Enfeksiyon Hastalıkları
+B19	Tanımlanmamış viral hepatit	I. Enfeksiyon Hastalıkları
+B20	HIV hastalığı, enfeksiyöz ve parazitik hastalıklarla	I. Enfeksiyon Hastalıkları
+B26	Kabakulak	I. Enfeksiyon Hastalıkları
+B34	Viral enfeksiyon, lokalizasyonu tanımlanmamış	I. Enfeksiyon Hastalıkları
+B34.9	Viral enfeksiyon, tanımlanmamış	I. Enfeksiyon Hastalıkları
+B35	Dermatofitoz	I. Enfeksiyon Hastalıkları
+B37	Kandidiyazis	I. Enfeksiyon Hastalıkları
+B49	Mantar enfeksiyonu, tanımlanmamış	I. Enfeksiyon Hastalıkları
+B86	Skabies (uyuz)	I. Enfeksiyon Hastalıkları
+B89	Parazit hastalığı, tanımlanmamış	I. Enfeksiyon Hastalıkları
+B99	Diğer ve tanımlanmamış enfeksiyöz hastalıklar	I. Enfeksiyon Hastalıkları
+C16	Mide kötü huylu neoplazmı	II. Neoplazmlar
+C18	Kolon kötü huylu neoplazmı	II. Neoplazmlar
+C19	Rektosigmoid bileşke kötü huylu neoplazmı	II. Neoplazmlar
+C20	Rektum kötü huylu neoplazmı	II. Neoplazmlar
+C22	Karaciğer kötü huylu neoplazmı	II. Neoplazmlar
+C25	Pankreas kötü huylu neoplazmı	II. Neoplazmlar
+C33	Trakea kötü huylu neoplazmı	II. Neoplazmlar
+C34	Bronş ve akciğer kötü huylu neoplazmı	II. Neoplazmlar
+C50	Meme kötü huylu neoplazmı	II. Neoplazmlar
+C53	Serviks uteri kötü huylu neoplazmı	II. Neoplazmlar
+C54	Korpus uteri kötü huylu neoplazmı	II. Neoplazmlar
+C56	Over kötü huylu neoplazmı	II. Neoplazmlar
+C61	Prostat kötü huylu neoplazmı	II. Neoplazmlar
+C64	Böbrek kötü huylu neoplazmı	II. Neoplazmlar
+C67	Mesane kötü huylu neoplazmı	II. Neoplazmlar
+C73	Tiroid bezi kötü huylu neoplazmı	II. Neoplazmlar
+C77	Lenf bezleri sekonder ve tanımlanmamış kötü huylu neoplazmı	II. Neoplazmlar
+C78	Solunum ve sindirim organları sekonder kötü huylu neoplazmı	II. Neoplazmlar
+C79	Diğer ve tanımlanmamış sekonder kötü huylu neoplazm	II. Neoplazmlar
+C80	Kötü huylu neoplazm, primer lokalizasyon tanımlanmamış	II. Neoplazmlar
+C81	Hodgkin lenfoma	II. Neoplazmlar
+C82	Foliküler lenfoma	II. Neoplazmlar
+C83	Hodgkin dışı lenfoma	II. Neoplazmlar
+C85	Diğer ve tanımlanmamış non-Hodgkin lenfoma	II. Neoplazmlar
+C90	Multiple miyelom ve plazma hücreli neoplazmlar	II. Neoplazmlar
+C91	Lenfoid lösemi	II. Neoplazmlar
+C92	Miyeloid lösemi	II. Neoplazmlar
+D12	Kolon, rektum, anüs benign neoplazm	II. Neoplazmlar
+D17	Benign lipomatöz neoplazm	II. Neoplazmlar
+D22	Melanositik nevüs	II. Neoplazmlar
+D25	Uterus leiomyomu	II. Neoplazmlar
+D27	Over benign neoplazm	II. Neoplazmlar
+D36	Diğer benign neoplazmlar	II. Neoplazmlar
+D50	Demir eksikliği anemisi	III. Kan Hastalıkları
+D51	B12 eksikliği anemisi	III. Kan Hastalıkları
+D52	Folat eksikliği anemisi	III. Kan Hastalıkları
+D55	Enzim bozukluğuna bağlı anemi	III. Kan Hastalıkları
+D56	Talasemi	III. Kan Hastalıkları
+D57	Orak hücre bozuklukları	III. Kan Hastalıkları
+D62	Akut posthemorajik anemi	III. Kan Hastalıkları
+D64	Diğer anemiler	III. Kan Hastalıkları
+D69	Purpura ve diğer hemorajik durumlar	III. Kan Hastalıkları
+D70	Agranülositoz	III. Kan Hastalıkları
+E03	Diğer hipotiroidi	IV. Endokrin Hastalıkları
+E04	Diğer non-toksik guatr	IV. Endokrin Hastalıkları
+E05	Tirotoksikoz [hipertiroidi]	IV. Endokrin Hastalıkları
+E06	Tiroidit	IV. Endokrin Hastalıkları
+E07	Diğer tiroid bozuklukları	IV. Endokrin Hastalıkları
+E10	Tip 1 diabetes mellitus	IV. Endokrin Hastalıkları
+E11	Tip 2 diabetes mellitus	IV. Endokrin Hastalıkları
+E11.9	Tip 2 diabetes mellitus, komplikasyonsuz	IV. Endokrin Hastalıkları
+E14	Tanımlanmamış diabetes mellitus	IV. Endokrin Hastalıkları
+E16	Pankreasın diğer iç salgı bozuklukları	IV. Endokrin Hastalıkları
+E22	Hipofiz hiperaktivitesi	IV. Endokrin Hastalıkları
+E27	Diğer böbreküstü bezi bozuklukları	IV. Endokrin Hastalıkları
+E66	Obezite	IV. Endokrin Hastalıkları
+E66.9	Obezite, tanımlanmamış	IV. Endokrin Hastalıkları
+E78	Lipoprotein metabolizması bozuklukları	IV. Endokrin Hastalıkları
+E78.0	Saf hiperkolesterolemi	IV. Endokrin Hastalıkları
+E78.5	Hiperlipidemi, tanımlanmamış	IV. Endokrin Hastalıkları
+E83	Mineral metabolizması bozuklukları	IV. Endokrin Hastalıkları
+E86	Hipovolemi	IV. Endokrin Hastalıkları
+E87	Sıvı, elektrolit, asit-baz dengesi bozuklukları	IV. Endokrin Hastalıkları
+F10	Alkol kullanım bozukluğu	V. Mental Hastalıklar
+F17	Tütün kullanım bozukluğu	V. Mental Hastalıklar
+F20	Şizofreni	V. Mental Hastalıklar
+F25	Şizoaffektif bozukluk	V. Mental Hastalıklar
+F31	Bipolar duygudurum bozukluğu	V. Mental Hastalıklar
+F32	Depresif epizod	V. Mental Hastalıklar
+F32.9	Depresif epizod, tanımlanmamış	V. Mental Hastalıklar
+F33	Tekrarlayan depresif bozukluk	V. Mental Hastalıklar
+F40	Fobik anksiyete bozuklukları	V. Mental Hastalıklar
+F41	Diğer anksiyete bozuklukları	V. Mental Hastalıklar
+F41.9	Anksiyete bozukluğu, tanımlanmamış	V. Mental Hastalıklar
+F43	Şiddetli stres ve uyum bozuklukları	V. Mental Hastalıklar
+F45	Somatoform bozukluklar	V. Mental Hastalıklar
+F50	Yeme bozuklukları	V. Mental Hastalıklar
+F51	Organik olmayan uyku bozuklukları	V. Mental Hastalıklar
+F70	Hafif mental retardasyon	V. Mental Hastalıklar
+F84	Yaygın gelişimsel bozukluklar	V. Mental Hastalıklar
+F90	Hiperkinetik bozukluklar	V. Mental Hastalıklar
+F99	Mental bozukluk, tanımlanmamış	V. Mental Hastalıklar
+G40	Epilepsi	VI. Sinir Sistemi Hastalıkları
+G40.9	Epilepsi, tanımlanmamış	VI. Sinir Sistemi Hastalıkları
+G43	Migren	VI. Sinir Sistemi Hastalıkları
+G44	Diğer baş ağrısı sendromları	VI. Sinir Sistemi Hastalıkları
+G45	Geçici iskemik atak	VI. Sinir Sistemi Hastalıkları
+G47	Uyku bozuklukları	VI. Sinir Sistemi Hastalıkları
+G50	Trigeminal sinir bozuklukları	VI. Sinir Sistemi Hastalıkları
+G54	Sinir kökü ve pleksus bozuklukları	VI. Sinir Sistemi Hastalıkları
+G55	Diğer sinir kökü bozuklukları	VI. Sinir Sistemi Hastalıkları
+G56	Üst ekstremite mononöropatileri	VI. Sinir Sistemi Hastalıkları
+G56.0	Karpal tünel sendromu	VI. Sinir Sistemi Hastalıkları
+G57	Alt ekstremite mononöropatileri	VI. Sinir Sistemi Hastalıkları
+G62	Diğer polinöropatiler	VI. Sinir Sistemi Hastalıkları
+G93	Diğer beyin bozuklukları	VI. Sinir Sistemi Hastalıkları
+H10	Konjonktivit	VII. Göz Hastalıkları
+H25	Senil katarakt	VII. Göz Hastalıkları
+H35	Diğer retinal bozukluklar	VII. Göz Hastalıkları
+H40	Glokom	VII. Göz Hastalıkları
+H52	Akomodasyon ve refraksiyon bozuklukları	VII. Göz Hastalıkları
+H53	Görme bozuklukları	VII. Göz Hastalıkları
+H60	Otitis eksterna	VIII. Kulak Hastalıkları
+H65	Non-süpüratif otitis media	VIII. Kulak Hastalıkları
+H66	Süpüratif otitis media	VIII. Kulak Hastalıkları
+H81	Vestibüler fonksiyon bozuklukları	VIII. Kulak Hastalıkları
+H90	İletim ve sensorinöral işitme kaybı	VIII. Kulak Hastalıkları
+H91	Diğer işitme kaybı	VIII. Kulak Hastalıkları
+I10	Esansiyel (primer) hipertansiyon	IX. Dolaşım Sistemi
+I11	Hipertansif kalp hastalığı	IX. Dolaşım Sistemi
+I20	Anjina pektoris	IX. Dolaşım Sistemi
+I21	Akut miyokard infarktüsü	IX. Dolaşım Sistemi
+I25	Kronik iskemik kalp hastalığı	IX. Dolaşım Sistemi
+I26	Pulmoner emboli	IX. Dolaşım Sistemi
+I35	Aort kapak bozuklukları	IX. Dolaşım Sistemi
+I42	Kardiyomiyopati	IX. Dolaşım Sistemi
+I44	Atriyoventriküler ve sol dal blokları	IX. Dolaşım Sistemi
+I48	Atrial fibrilasyon ve flatter	IX. Dolaşım Sistemi
+I49	Diğer kardiyak aritmiler	IX. Dolaşım Sistemi
+I50	Kalp yetmezliği	IX. Dolaşım Sistemi
+I50.9	Kalp yetmezliği, tanımlanmamış	IX. Dolaşım Sistemi
+I63	Serebral infarkt	IX. Dolaşım Sistemi
+I64	İnme, kanama veya infarkt olarak tanımlanmamış	IX. Dolaşım Sistemi
+I65	Beyin öncesi arter tıkanıklığı	IX. Dolaşım Sistemi
+I67	Diğer serebrovasküler hastalıklar	IX. Dolaşım Sistemi
+I69	Serebrovasküler hastalık sekelleri	IX. Dolaşım Sistemi
+I70	Ateroskleroz	IX. Dolaşım Sistemi
+I80	Flebit ve tromboflebit	IX. Dolaşım Sistemi
+I83	Alt ekstremite varisleri	IX. Dolaşım Sistemi
+I84	Hemoroid	IX. Dolaşım Sistemi
+I95	Hipotansiyon	IX. Dolaşım Sistemi
+J00	Akut nazofarenjit (nezle)	X. Solunum Sistemi
+J01	Akut sinüzit	X. Solunum Sistemi
+J02	Akut farenjit	X. Solunum Sistemi
+J03	Akut tonsillit	X. Solunum Sistemi
+J04	Akut laringit ve trakeit	X. Solunum Sistemi
+J05	Akut obstruktif laringit (krup) ve epiglottit	X. Solunum Sistemi
+J06	Akut üst solunum yolu enfeksiyonu, çoklu lokalizasyon	X. Solunum Sistemi
+J06.9	ÜSYE, tanımlanmamış	X. Solunum Sistemi
+J11	İnfluenza, virüs belirlenmemiş	X. Solunum Sistemi
+J12	Viral pnömoni	X. Solunum Sistemi
+J14	Haemophilus influenzae pnömonisi	X. Solunum Sistemi
+J15	Bakteriyel pnömoni	X. Solunum Sistemi
+J18	Pnömoni, mikroorganizma belirlenmemiş	X. Solunum Sistemi
+J18.9	Pnömoni, tanımlanmamış	X. Solunum Sistemi
+J20	Akut bronşit	X. Solunum Sistemi
+J22	Akut alt solunum yolu enfeksiyonu	X. Solunum Sistemi
+J30	Vazomotor ve allerjik rinit	X. Solunum Sistemi
+J32	Kronik sinüzit	X. Solunum Sistemi
+J35	Tonsil ve adenoid kronik hastalıkları	X. Solunum Sistemi
+J40	Bronşit, akut veya kronik olarak tanımlanmamış	X. Solunum Sistemi
+J41	Basit ve mukopürülan kronik bronşit	X. Solunum Sistemi
+J44	Diğer kronik obstrüktif akciğer hastalığı (KOAH)	X. Solunum Sistemi
+J44.9	KOAH, tanımlanmamış	X. Solunum Sistemi
+J45	Astım	X. Solunum Sistemi
+J45.9	Astım, tanımlanmamış	X. Solunum Sistemi
+J90	Plöral efüzyon	X. Solunum Sistemi
+J93	Pnömotoraks	X. Solunum Sistemi
+J96	Solunum yetmezliği	X. Solunum Sistemi
+K02	Diş çürüğü	XI. Sindirim Sistemi
+K20	Özofajit	XI. Sindirim Sistemi
+K21	Gastroözofageal reflü hastalığı	XI. Sindirim Sistemi
+K21.0	GÖRD özofajit ile	XI. Sindirim Sistemi
+K25	Mide ülseri	XI. Sindirim Sistemi
+K26	Duodenum ülseri	XI. Sindirim Sistemi
+K29	Gastrit ve duodenit	XI. Sindirim Sistemi
+K29.7	Gastrit, tanımlanmamış	XI. Sindirim Sistemi
+K30	Fonksiyonel dispepsi	XI. Sindirim Sistemi
+K35	Akut apandisit	XI. Sindirim Sistemi
+K40	İnguinal herni	XI. Sindirim Sistemi
+K42	Umbilikal herni	XI. Sindirim Sistemi
+K43	Ventral herni	XI. Sindirim Sistemi
+K50	Crohn hastalığı	XI. Sindirim Sistemi
+K51	Ülseratif kolit	XI. Sindirim Sistemi
+K52	Diğer non-enfeksiyöz gastroenterit ve kolit	XI. Sindirim Sistemi
+K57	Bağırsak divertikül hastalığı	XI. Sindirim Sistemi
+K58	İrritabl bağırsak sendromu	XI. Sindirim Sistemi
+K59	Diğer fonksiyonel bağırsak bozuklukları	XI. Sindirim Sistemi
+K59.0	Konstipasyon	XI. Sindirim Sistemi
+K70	Alkolik karaciğer hastalığı	XI. Sindirim Sistemi
+K74	Karaciğer fibrozu ve sirozu	XI. Sindirim Sistemi
+K76	Diğer karaciğer hastalıkları	XI. Sindirim Sistemi
+K80	Kolelitiazis (safra taşı)	XI. Sindirim Sistemi
+K81	Kolesistit	XI. Sindirim Sistemi
+K85	Akut pankreatit	XI. Sindirim Sistemi
+K86	Diğer pankreas hastalıkları	XI. Sindirim Sistemi
+K92	Diğer sindirim sistemi hastalıkları	XI. Sindirim Sistemi
+L20	Atopik dermatit	XII. Deri Hastalıkları
+L21	Seboreik dermatit	XII. Deri Hastalıkları
+L23	Allerjik kontakt dermatit	XII. Deri Hastalıkları
+L25	Belirlenmemiş kontakt dermatit	XII. Deri Hastalıkları
+L29	Pruritus	XII. Deri Hastalıkları
+L30	Diğer dermatit	XII. Deri Hastalıkları
+L40	Psoriasis	XII. Deri Hastalıkları
+L50	Ürtiker	XII. Deri Hastalıkları
+L60	Tırnak bozuklukları	XII. Deri Hastalıkları
+L70	Akne	XII. Deri Hastalıkları
+L72	Cilt foliküler kistleri	XII. Deri Hastalıkları
+L80	Vitiligo	XII. Deri Hastalıkları
+L82	Seboreik keratoz	XII. Deri Hastalıkları
+L98	Diğer cilt hastalıkları	XII. Deri Hastalıkları
+M05	Seropozitif romatoid artrit	XIII. Kas-İskelet Sistemi
+M06	Diğer romatoid artrit	XIII. Kas-İskelet Sistemi
+M10	Gut	XIII. Kas-İskelet Sistemi
+M15	Polyartroz	XIII. Kas-İskelet Sistemi
+M16	Koksartroz	XIII. Kas-İskelet Sistemi
+M17	Gonartroz (diz osteoartriti)	XIII. Kas-İskelet Sistemi
+M19	Diğer artroz	XIII. Kas-İskelet Sistemi
+M25	Diğer eklem bozuklukları	XIII. Kas-İskelet Sistemi
+M32	Sistemik lupus eritematozus	XIII. Kas-İskelet Sistemi
+M41	Skolyoz	XIII. Kas-İskelet Sistemi
+M42	Spinal osteokondroz	XIII. Kas-İskelet Sistemi
+M48	Diğer spondilopatiler	XIII. Kas-İskelet Sistemi
+M50	Servikal disk bozuklukları	XIII. Kas-İskelet Sistemi
+M51	Diğer disk bozuklukları (LDH)	XIII. Kas-İskelet Sistemi
+M51.1	Lomber disk bozuklukları, radikülopati ile	XIII. Kas-İskelet Sistemi
+M54	Sırt ağrısı	XIII. Kas-İskelet Sistemi
+M54.5	Bel ağrısı	XIII. Kas-İskelet Sistemi
+M62	Diğer kas bozuklukları	XIII. Kas-İskelet Sistemi
+M65	Sinovit ve tenosinovit	XIII. Kas-İskelet Sistemi
+M75	Omuz lezyonları	XIII. Kas-İskelet Sistemi
+M77	Diğer entezopatiler	XIII. Kas-İskelet Sistemi
+M79	Diğer yumuşak doku bozuklukları	XIII. Kas-İskelet Sistemi
+M79.1	Miyalji	XIII. Kas-İskelet Sistemi
+M81	Patoloji bulgusu olmayan osteoporoz	XIII. Kas-İskelet Sistemi
+M84	Kemik devamlılığı bozuklukları	XIII. Kas-İskelet Sistemi
+M89	Diğer kemik hastalıkları	XIII. Kas-İskelet Sistemi
+N10	Akut tübülointerstisyel nefrit	XIV. Genitoüriner Sistem
+N11	Kronik tübülointerstisyel nefrit	XIV. Genitoüriner Sistem
+N12	Tübülointerstisyel nefrit, akut/kronik olarak tanımlanmamış	XIV. Genitoüriner Sistem
+N17	Akut böbrek yetmezliği	XIV. Genitoüriner Sistem
+N18	Kronik böbrek hastalığı	XIV. Genitoüriner Sistem
+N19	Tanımlanmamış böbrek yetmezliği	XIV. Genitoüriner Sistem
+N20	Böbrek ve üreter taşları	XIV. Genitoüriner Sistem
+N30	Sistit	XIV. Genitoüriner Sistem
+N39	Diğer üriner sistem bozuklukları	XIV. Genitoüriner Sistem
+N39.0	İdrar yolu enfeksiyonu, lokalizasyonu tanımlanmamış	XIV. Genitoüriner Sistem
+N40	Benign prostat hiperplazisi	XIV. Genitoüriner Sistem
+N45	Orşit ve epididimit	XIV. Genitoüriner Sistem
+N60	Memenin benign displazisi	XIV. Genitoüriner Sistem
+N63	Tanımlanmamış meme kitlesi	XIV. Genitoüriner Sistem
+N70	Ooforit ve salpenjit	XIV. Genitoüriner Sistem
+N76	Diğer vajinal inflamasyon	XIV. Genitoüriner Sistem
+N80	Endometriozis	XIV. Genitoüriner Sistem
+N81	Genital prolapsus, kadın	XIV. Genitoüriner Sistem
+N83	Over ve fallop tüpü non-inflamatuar bozuklukları	XIV. Genitoüriner Sistem
+N91	Adet yokluğu ve azlığı	XIV. Genitoüriner Sistem
+N92	Aşırı, sık veya düzensiz adet	XIV. Genitoüriner Sistem
+N93	Diğer anormal uterus / vaginal kanama	XIV. Genitoüriner Sistem
+N94	Kadın genital organlarıyla ilgili ağrı	XIV. Genitoüriner Sistem
+N97	Kadın infertilitesi	XIV. Genitoüriner Sistem
+O00	Ektopik gebelik	XV. Gebelik
+O03	Spontan abortus	XV. Gebelik
+O15	Eklampsi	XV. Gebelik
+O20	Erken gebelikte kanama	XV. Gebelik
+O21	Bulantı ve kusma, gebelikte	XV. Gebelik
+O80	Tek doğum, kendiliğinden	XV. Gebelik
+Z34	Normal gebelik takibi	XV. Gebelik
+P07	Düşük doğum ağırlığı	XVI. Perinatal Durumlar
+P22	Yenidoğanda solunum sıkıntısı	XVI. Perinatal Durumlar
+P59	Yenidoğan sarılığı	XVI. Perinatal Durumlar
+Q21	Konjenital kalp septum malformasyonları	XVII. Konjenital Malformasyonlar
+Q53	Konjenital inmemiş testis	XVII. Konjenital Malformasyonlar
+R04	Solunum yollarından kanama	XVIII. Bulgu ve Semptomlar
+R05	Öksürük	XVIII. Bulgu ve Semptomlar
+R06	Solunum anormallikleri	XVIII. Bulgu ve Semptomlar
+R07	Boğaz ve göğüs ağrısı	XVIII. Bulgu ve Semptomlar
+R10	Karın ve pelvis ağrısı	XVIII. Bulgu ve Semptomlar
+R10.4	Karın ağrısı, tanımlanmamış	XVIII. Bulgu ve Semptomlar
+R11	Bulantı ve kusma	XVIII. Bulgu ve Semptomlar
+R14	Şişkinlik ve ilgili durumlar	XVIII. Bulgu ve Semptomlar
+R19	Sindirim sistemi ve karın bölgesi diğer semptomları	XVIII. Bulgu ve Semptomlar
+R21	Döküntü ve diğer cilt bulguları	XVIII. Bulgu ve Semptomlar
+R22	Lokalize cilt şişliği	XVIII. Bulgu ve Semptomlar
+R30	İdrarla ilgili ağrı	XVIII. Bulgu ve Semptomlar
+R31	Tanımlanmamış hematüri	XVIII. Bulgu ve Semptomlar
+R42	Baş dönmesi	XVIII. Bulgu ve Semptomlar
+R50	Tanımlanmamış ateş	XVIII. Bulgu ve Semptomlar
+R51	Baş ağrısı	XVIII. Bulgu ve Semptomlar
+R52	Ağrı, başka yerde sınıflanmamış	XVIII. Bulgu ve Semptomlar
+R55	Senkop ve kollaps	XVIII. Bulgu ve Semptomlar
+R56	Konvülziyonlar, başka yerde sınıflanmamış	XVIII. Bulgu ve Semptomlar
+R60	Ödem, başka yerde sınıflanmamış	XVIII. Bulgu ve Semptomlar
+R63	Beslenme ve sıvı alımına ilişkin semptomlar	XVIII. Bulgu ve Semptomlar
+R74	Anormal serum enzim seviyeleri	XVIII. Bulgu ve Semptomlar
+R94	Fonksiyon çalışmalarının anormal sonuçları	XVIII. Bulgu ve Semptomlar
+S00	Baş yüzeysel yaralanması	XIX. Yaralanmalar
+S01	Baş açık yarası	XIX. Yaralanmalar
+S06	İntrakraniyal yaralanma	XIX. Yaralanmalar
+S20	Toraks yüzeysel yaralanması	XIX. Yaralanmalar
+S30	Karın yüzeysel yaralanması	XIX. Yaralanmalar
+S52	Önkol kırığı	XIX. Yaralanmalar
+S72	Femur kırığı	XIX. Yaralanmalar
+S82	Bacak kırığı, ayak bileği dahil	XIX. Yaralanmalar
+S92	Ayak kırığı, ayak bileği hariç	XIX. Yaralanmalar
+T14	Tanımlanmamış bölge yaralanması	XIX. Yaralanmalar
+T78	Diğer advers etkiler	XIX. Yaralanmalar
+T81	Cerrahi işlem komplikasyonları	XIX. Yaralanmalar
+Z00	Genel muayene, şikayetsiz / şüphesiz	XX. Sağlık Hizmeti Kullanımı
+Z00.0	Erişkin genel sağlık muayenesi	XX. Sağlık Hizmeti Kullanımı
+Z01	Diğer özel muayene ve incelemeler	XX. Sağlık Hizmeti Kullanımı
+Z03	Tıbbi gözlem, şüpheli hastalıklar için	XX. Sağlık Hizmeti Kullanımı
+Z11	Enfeksiyon ve parazit hastalıkları için tarama	XX. Sağlık Hizmeti Kullanımı
+Z12	Neoplazmlar için tarama	XX. Sağlık Hizmeti Kullanımı
+Z13	Diğer hastalıklar için tarama	XX. Sağlık Hizmeti Kullanımı
+Z23	Tek bir bakteriyel hastalık için aşılama	XX. Sağlık Hizmeti Kullanımı
+Z24	Diğer viral hastalıklar için aşılama	XX. Sağlık Hizmeti Kullanımı
+Z30	Aile planlama hizmetleri	XX. Sağlık Hizmeti Kullanımı
+Z32	Gebelik testi ve doğum eğitimi	XX. Sağlık Hizmeti Kullanımı
+Z33	Gebelik durumu, insidental bulgu	XX. Sağlık Hizmeti Kullanımı
+Z35	Yüksek riskli gebelik takibi	XX. Sağlık Hizmeti Kullanımı
+Z38	Doğum yerine göre canlı doğan yenidoğanlar	XX. Sağlık Hizmeti Kullanımı
+Z39	Doğum sonrası bakım ve muayene	XX. Sağlık Hizmeti Kullanımı
+Z51	Diğer tıbbi bakım	XX. Sağlık Hizmeti Kullanımı
+Z51.1	Neoplazm kemoterapisi	XX. Sağlık Hizmeti Kullanımı
+Z71	Tıbbi danışmanlık	XX. Sağlık Hizmeti Kullanımı
+Z76	Diğer durumlarla ilgili sağlık hizmeti kullanımı	XX. Sağlık Hizmeti Kullanımı
