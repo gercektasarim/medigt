@@ -88,5 +88,4 @@ saklı kaldığı sürece. Detaylar için `LICENSE` dosyasına bakınız.
 **Türker Aktaş**
 
 - E-posta: <turker.aktas81@gmail.com>
-- Telefon: [+90 530 288 98 60](tel:+905302889860)
 - Repo: <https://github.com/gercektasarim/medigt>
